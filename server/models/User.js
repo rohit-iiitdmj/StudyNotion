@@ -53,13 +53,13 @@ const userSchema = new mongoose.Schema(
 				ref: "Course",
 			},
 		],
-		token: {
+		token:{
 			type: String,
 		},
-		resetPasswordExpires: {
+		resetPasswordExpires:{
 			type: Date,
 		},
-		image: {
+		image:{
 			type: String,
 			required: true,
 		},
