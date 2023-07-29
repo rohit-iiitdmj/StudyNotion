@@ -280,13 +280,14 @@ function Navbar() {
                         </div>
                       </div>
                       <Link to="/dashboard/my-profile">
-                        <p className="  text-pure-greys-50 text-xl">
+                        <p onClick={()=>{setNavs(false)}} className="  text-pure-greys-50 text-xl">
                           Dashboard
                         </p>
                       </Link>
-                      <div
+                      <div 
                         onClick={() => {
                           dispatch(logout(navigate));
+                          setNavs(false)
                         }}
                         className=" text-pure-greys-50 text-xl  cursor-pointer"
                       >
