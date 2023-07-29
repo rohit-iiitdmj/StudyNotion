@@ -44,7 +44,10 @@ function Navbar() {
   // console.log("sub links", subLinks)
 
   const matchRoute = (route) => {
-    return matchPath({ path: route }, location.pathname);
+    
+    return matchPath({ path: route }, location.pathname)
+    
+    ;
   };
 
   return (
@@ -68,12 +71,12 @@ function Navbar() {
             </Link>
             {/* Navigation links */}
             <nav className="hidden md:block">
-              <ul className="flex gap-x-6 text-richblack-25">
+              <ul  className="flex gap-x-6 text-richblack-25">
                 {NavbarLinks.map((link, index) => (
                   <li key={index}>
                     {link.title === "Catalog" ? (
                       <>
-                        <div
+                        <div 
                           className={`group relative flex cursor-pointer items-center gap-1 ${
                             matchRoute("/catalog/:catalogName")
                               ? "text-yellow-25"
@@ -93,7 +96,7 @@ function Navbar() {
                                     (subLink) => subLink?.name?.length > 0
                                   )
                                   ?.map((subLink, i) => (
-                                    <Link
+                                    <Link 
                                       to={`/catalog/${subLink.name
                                         .split(" ")
                                         .join("-")
@@ -112,8 +115,8 @@ function Navbar() {
                         </div>
                       </>
                     ) : (
-                      <Link to={link?.path}>
-                        <p
+                      <Link  to={link?.path}>
+                        <p  
                           className={`${
                             matchRoute(link?.path)
                               ? "text-yellow-25"
@@ -186,14 +189,14 @@ function Navbar() {
                     >
                       {link.title === "Catalog" ? (
                         <>
-                          <div
+                          <div 
                             className={`group    relative flex cursor-pointer items-center gap-1 ${
                               matchRoute("/catalog/:catalogName")
                                 ? "text-yellow-25"
                                 : "text-richblack-25"
                             }`}
                           >
-                            <p>{link.title}</p>
+                            <p  >{link.title}</p>
                             <BsChevronDown />
                             <div className="invisible absolute left-[13%] top-[50%] z-[1000] flex w-[200px] translate-x-[-50%] translate-y-[3em] flex-col rounded-lg bg-richblack-5 p-4 text-richblack-900 opacity-0 transition-all duration-150 group-hover:visible group-hover:translate-y-[1.65em] group-hover:opacity-100 lg:w-[300px]">
                               <div className="absolute left-[38%] top-0 -z-10 h-6 w-6 translate-x-[80%] translate-y-[-40%] rotate-45 select-none rounded bg-richblack-5"></div>
@@ -214,7 +217,7 @@ function Navbar() {
                                         className="rounded-lg bg-transparent py-4 pl-4 hover:bg-richblack-50"
                                         key={i}
                                       >
-                                        <p>{subLink.name}</p>
+                                        <p onClick={()=>{setNavs(false)}}>{subLink.name}</p>
                                       </Link>
                                     ))}
                                 </>
@@ -226,7 +229,7 @@ function Navbar() {
                         </>
                       ) : (
                         <Link to={link?.path}>
-                          <p
+                          <p onClick={()=>{setNavs(false)}}
                             className={`${
                               matchRoute(link?.path)
                                 ? "text-yellow-25"
@@ -244,66 +247,66 @@ function Navbar() {
               <div className=" bg-richblack-400 h-[1px] w-full my-3"></div>
               <div className="flex mx-4  flex-col mt-4      gap-y-4 ">
                 {token === null && (
-                  <Link to="/login">
-                    <button className="rounded-[8px]  text-[20px]  w-full  border border-richblack-700 bg-richblack-800  py-[7px] text-richblack-100">
+                  <Link  to="/login">
+                    <button onClick={()=>{setNavs(false)}} className="rounded-[8px]  text-[20px]  w-full  border border-richblack-700 bg-richblack-800  py-[7px] text-richblack-100">
                       Log in
                     </button>
                   </Link>
                 )}
                 {token === null && (
                   <Link to="/signup">
-                    <button className="rounded-[8px]  text-[20px]  w-full  border border-richblack-700 bg-richblack-800 py-[7px] text-richblack-100">
+                    <button onClick={()=>{setNavs(false)}} className="rounded-[8px]  text-[20px]  w-full  border border-richblack-700 bg-richblack-800 py-[7px] text-richblack-100">
                       Sign up
                     </button>
                   </Link>
                 )}
                 {token !== null && (
                   <div className=" w-full flex  justify-between   ">
-                  <div className=" flex flex-col gap-y-3 ">
-                    <div className="flex items-center  w-full  mb-2  space-x-6 gap-x-1">
-                      <img
-                        src={user?.image}
-                        alt={`profile-${user?.firstName}`}
-                        className="aspect-square w-[60px]  border-[3px]  border-caribbeangreen-300 rounded-full object-cover"
-                      />
-                      <div>
-                        <p className=" text-white font-mono font-extralight text-2xl">
-                          {user?.firstName}
+                    <div className=" flex flex-col gap-y-3 ">
+                      <div className="flex items-center  w-full  mb-2  space-x-6 gap-x-1">
+                        <img
+                          src={user?.image}
+                          alt={`profile-${user?.firstName}`}
+                          className="aspect-square w-[60px]  border-[3px]  border-caribbeangreen-300 rounded-full object-cover"
+                        />
+                        <div>
+                          <p className=" text-white font-mono font-extralight text-2xl">
+                            {user?.firstName}
+                          </p>
+                          <p className=" text-richblue-25 font-normal">
+                            {" "}
+                            {user.email}
+                          </p>
+                        </div>
+                      </div>
+                      <Link to="/dashboard/my-profile">
+                        <p className="  text-pure-greys-50 text-xl">
+                          Dashboard
                         </p>
-                        <p className=" text-richblue-25 font-normal">
-                          {" "}
-                          {user.email}
-                        </p>
+                      </Link>
+                      <div
+                        onClick={() => {
+                          dispatch(logout(navigate));
+                        }}
+                        className=" text-pure-greys-50 text-xl  cursor-pointer"
+                      >
+                        {/* <VscSignOut className="text-lg" /> */}
+                        Logout
                       </div>
                     </div>
-                    <Link to="/dashboard/my-profile">
-                      <p className="  text-pure-greys-50 text-xl">Dashboard</p>
-                    </Link>
-                    <div
-                      onClick={() => {
-                        dispatch(logout(navigate));
-                      }}
-                      className=" text-pure-greys-50 text-xl  cursor-pointer"
-                    >
-                      {/* <VscSignOut className="text-lg" /> */}
-                      Logout
-                    </div>
-                  </div>
 
-
-                  {user && user?.accountType !== ACCOUNT_TYPE.INSTRUCTOR && (
-                    <Link to="/dashboard/cart" className="relative">
-                      <AiOutlineShoppingCart className="text-2xl text-richblack-100" />
-                      {totalItems > 0 && (
-                        <span className="absolute -bottom-2 -right-2 grid h-5 w-5 place-items-center overflow-hidden rounded-full bg-richblack-600 text-center text-xs font-bold text-yellow-100">
-                          {totalItems}
-                        </span>
-                      )}
-                    </Link>
-                  )}
+                    {user && user?.accountType !== ACCOUNT_TYPE.INSTRUCTOR && (
+                      <Link to="/dashboard/cart" className="relative">
+                        <AiOutlineShoppingCart className="text-2xl text-richblack-100" />
+                        {totalItems > 0 && (
+                          <span className="absolute -bottom-2 -right-2 grid h-5 w-5 place-items-center overflow-hidden rounded-full bg-richblack-600 text-center text-xs font-bold text-yellow-100">
+                            {totalItems}
+                          </span>
+                        )}
+                      </Link>
+                    )}
                   </div>
                 )}
-
               </div>
             </div>
           </div>
