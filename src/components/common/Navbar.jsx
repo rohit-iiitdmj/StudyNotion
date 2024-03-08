@@ -28,12 +28,10 @@ function Navbar() {
 
   useEffect(() => {
     (async () => {
-
       setLoading(true);
       try {
         const res = await apiConnector("GET", categories.CATEGORIES_API);
         setSubLinks(res.data.data);
-
 
         console.log(res);
       } catch (error) {

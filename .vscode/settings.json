@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "git.ignoreLimitWarning": true,
     "python.testing.unittestArgs": [
         "-v",
@@ -15,4 +16,7 @@
     "docwriter.progress.trackClasses": true,
     "docwriter.style": "Auto-detect",
     "docwriter.progress.trackTypes": true
+=======
+    "git.ignoreLimitWarning": true
+>>>>>>> 64f8fd8dfb4ab3ec42db1f7b683ed512f332c71e
 }
