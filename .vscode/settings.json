@@ -1,0 +1,18 @@
+{
+    "git.ignoreLimitWarning": true,
+    "python.testing.unittestArgs": [
+        "-v",
+        "-s",
+        ".",
+        "-p",
+        "*test.py"
+    ],
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestArgs": [
+        "src"
+    ],
+    "docwriter.progress.trackClasses": true,
+    "docwriter.style": "Auto-detect",
+    "docwriter.progress.trackTypes": true
+}
