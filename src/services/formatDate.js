@@ -11,4 +11,4 @@ export const formatDate = (dateString) => {
       .padStart(2, "0")} ${period}`
   
     return `${formattedDate} | ${formattedTime}`
-  }
+  } 
